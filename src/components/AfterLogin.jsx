@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "./Header";
+import { useNavigate } from "react-router-dom";
 
 const MainDiv = styled.div`
   display: flex;
@@ -94,6 +95,8 @@ const Content = styled.p`
 `;
 
 export default function AfterLogin() {
+  const navigate = useNavigate();
+
   const TeamMateList = [
     {
       title: "10614 이은교",
@@ -184,7 +187,7 @@ export default function AfterLogin() {
       <Header />
       <AllItems>
         <TeamMate>
-          <MatchingTitle>팀 모집 공고</MatchingTitle>
+          <MatchingTitle style={{ marginTop: "0" }}>팀 모집 공고</MatchingTitle>
           <MatchingDescription>소속될 팀을 찾는 공고 게시판입니다.</MatchingDescription>
           <Items>
             {TeamMateList.map((item) => (

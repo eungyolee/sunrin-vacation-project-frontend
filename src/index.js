@@ -7,7 +7,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Main from './pages/Main';
-import SignIn from './pages/SignIn';
 import Write from './pages/Write';
 
 const router = createBrowserRouter([
@@ -16,13 +15,9 @@ const router = createBrowserRouter([
     element: <Main />,
   },
   {
-    path: "/login",
-    element: <SignIn />,
-  },
-  {
     path: "/write",
     element: <Write />,
-  },
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

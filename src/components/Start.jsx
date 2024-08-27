@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import LoginBtn from "./LoginBtn";
 
 const MainDiv = styled.div`
   display: flex;
@@ -37,22 +38,6 @@ const SiteDescription = styled.p`
   color: #72312A;
 `;
 
-const StartBtn = styled.button`
-  font-size: 1.5rem;
-  font-weight: 700;
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 10px;
-  background-color: #891A0E;
-  color: white;
-  cursor: pointer;
-  &:hover {
-    border: 1px solid #891A0E;
-    background-color: white;
-    color: #891A0E;
-  }
-`;
-
 export default function Start({ login }) {
   return (
     <MainDiv>
@@ -61,7 +46,7 @@ export default function Start({ login }) {
           <SiteTitle></SiteTitle>
           <SiteDescription>선린인터넷고등학교 교내대회 팀 매칭 서비스</SiteDescription>
         </Infomation>
-        <StartBtn onClick={() => login()}>시작하기 →</StartBtn>
+        <LoginBtn login={() => login()} />
       </FlexElement>
     </MainDiv>
   );
