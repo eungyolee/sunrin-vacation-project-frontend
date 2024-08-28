@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const MainDiv = styled.div`
   display: flex;
@@ -23,10 +24,12 @@ const AllItems = styled.div`
 
 const TeamMate = styled.div`
   width: 100%;
+  height: 40%;
 `;
 
 const Team = styled.div`
   width: 100%;
+  height: 40%;
 `;
 
 const MatchingTitle = styled.h2`
@@ -92,96 +95,37 @@ const Content = styled.p`
   font-size: 1rem;
   font-weight: 400;
   color: #72312A;
+  width: 100%;
+  text-align: left;
 `;
 
 export default function AfterLogin() {
   const navigate = useNavigate();
+  const [teamMateList, setTeamMateList] = useState([]);
+  const [teamList, setTeamList] = useState([]);
 
-  const TeamMateList = [
-    {
-      title: "10614 이은교",
-      role: "프론트엔드 개발자",
-      content: "프론트엔드 개발자 이은교입니다. 선린 해커톤에서 팀을 구하고 있으며 Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      title: "10614 이은교",
-      role: "프론트엔드 개발자",
-      content: "프론트엔드 개발자 이은교입니다. 선린 해커톤에서 팀을 구하고 있으며 Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      title: "10614 이은교",
-      role: "프론트엔드 개발자",
-      content: "프론트엔드 개발자 이은교입니다. 선린 해커톤에서 팀을 구하고 있으며 Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      title: "10614 이은교",
-      role: "프론트엔드 개발자",
-      content: "프론트엔드 개발자 이은교입니다. 선린 해커톤에서 팀을 구하고 있으며 Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      title: "10614 이은교",
-      role: "프론트엔드 개발자",
-      content: "프론트엔드 개발자 이은교입니다. 선린 해커톤에서 팀을 구하고 있으며 Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      title: "10614 이은교",
-      role: "프론트엔드 개발자",
-      content: "프론트엔드 개발자 이은교입니다. 선린 해커톤에서 팀을 구하고 있으며 Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      title: "10614 이은교",
-      role: "프론트엔드 개발자",
-      content: "프론트엔드 개발자 이은교입니다. 선린 해커톤에서 팀을 구하고 있으며 Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-  ];
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/posts")
+      .then((res) => {
+        // type이 team인 것만 console log
+        setTeamMateList(res.data.filter((item) => item.type === "team"));
+      })
+      .catch((err) => {
+        console.error(err);
+      });
 
-  const TeamList = [
-    {
-      title: "AnA에서 팀원 모집합니다.",
-      role: "프론트엔드 개발자",
-      content: "AnA 팀에서 프론트엔드 개발자를 모집합니다. Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
-    {
-      title: "AnA에서 팀원 모집합니다.",
-      role: "프론트엔드 개발자",
-      content: "AnA 팀에서 프론트엔드 개발자를 모집합니다. Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
-    {
-      title: "AnA에서 팀원 모집합니다.",
-      role: "프론트엔드 개발자",
-      content: "AnA 팀에서 프론트엔드 개발자를 모집합니다. Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
-    {
-      title: "AnA에서 팀원 모집합니다.",
-      role: "프론트엔드 개발자",
-      content: "AnA 팀에서 프론트엔드 개발자를 모집합니다. Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
-    {
-      title: "AnA에서 팀원 모집합니다.",
-      role: "프론트엔드 개발자",
-      content: "AnA 팀에서 프론트엔드 개발자를 모집합니다. Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
-    {
-      title: "AnA에서 팀원 모집합니다.",
-      role: "프론트엔드 개발자",
-      content: "AnA 팀에서 프론트엔드 개발자를 모집합니다. Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
-    {
-      title: "AnA에서 팀원 모집합니다.",
-      role: "프론트엔드 개발자",
-      content: "AnA 팀에서 프론트엔드 개발자를 모집합니다. Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
-    {
-      title: "AnA에서 팀원 모집합니다.",
-      role: "프론트엔드 개발자",
-      content: "AnA 팀에서 프론트엔드 개발자를 모집합니다. Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
-    {
-      title: "AnA에서 팀원 모집합니다.",
-      role: "프론트엔드 개발자",
-      content: "AnA 팀에서 프론트엔드 개발자를 모집합니다. Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
-  ]
+    axios
+      .get("http://localhost:3001/posts")
+      .then((res) => {
+        // type이 teammate인 것만 필터링
+        setTeamList(res.data.filter((item) => item.type === "teammate"));
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
   return (
     <MainDiv>
       <Header />
@@ -190,14 +134,15 @@ export default function AfterLogin() {
           <MatchingTitle style={{ marginTop: "0" }}>팀 모집 공고</MatchingTitle>
           <MatchingDescription>소속될 팀을 찾는 공고 게시판입니다.</MatchingDescription>
           <Items>
-            {TeamMateList.map((item) => (
-              <Item>
+            {teamMateList.map((item) => (
+              <Item onClick={() => navigate(`/learn-more?id=${item._id}`)}>
                 <WriterInfo>
                   <Title>{item.title}</Title>
-                  <Role>{item.role}</Role>
+                  <Role>{item.field}</Role>
                 </WriterInfo>
                 <Content>
-                  {item.content.length > 50 ? item.content.slice(0, 50) + "..." : item.content}
+                  {/* {item.content.length > 50 ? item.content.slice(0, 50) + "..." : item.content} */}
+                  {item.content}
                 </Content>
               </Item>
             ))}
@@ -207,14 +152,15 @@ export default function AfterLogin() {
           <MatchingTitle>팀원 모집 공고</MatchingTitle>
           <MatchingDescription>팀에 새로 들어올 팀원을 모집하는 공고 게시판입니다.</MatchingDescription>
           <Items>
-            {TeamList.map((item) => (
-              <Item>
+            {teamList.map((item) => (
+              <Item onClick={() => navigate(`/learn-more?id=${item._id}`)}>
                 <WriterInfo>
                   <Title>{item.title}</Title>
-                  <Role>{item.role}</Role>
+                  <Role>{item.field}</Role>
                 </WriterInfo>
                 <Content>
-                  {item.content.length > 50 ? item.content.slice(0, 50) + "..." : item.content}
+                  {/* {item.content.length > 50 ? item.content.slice(0, 50) + "..." : item.content} */}
+                  {item.content}
                 </Content>
               </Item>
             ))}

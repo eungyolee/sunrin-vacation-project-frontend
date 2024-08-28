@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
+import axios from "axios";
 
 const RootDiv = styled.div`
   height: 100vh;
@@ -88,33 +89,68 @@ const InfoInput = styled.div`
 `;
 
 export default function Write() {
+  const [type, setType] = useState("team");
+  const [competition, setCompetition] = useState("선린 해커톤");
+  const [field, setField] = useState("");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+
+  const handleSubmit = async () => {
+    if (field === "") {
+      alert("분야를 입력하세요.");
+      return;
+    }
+    if (title === "") {
+      alert("제목을 입력하세요.");
+      return;
+    }
+    if (content === "") {
+      alert("내용을 입력하세요.");
+      return;
+    }
+    await axios.post("http://localhost:3001/posts", {
+      type: type,
+      competition: competition,
+      field: field,
+      title: title,
+      content: content,
+    })
+    .then((response) => {
+      console.log(response);
+      alert("글 작성이 완료되었습니다.");
+      window.location.href = "/";
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  };
+
   return (
     <RootDiv>
       <Header />
       <MainDiv>
         <InfoTitle>글 작성</InfoTitle>
         <TypeRadio>
-          <Team>
+          <Team onClick={() => setType("team")}>
             <Radio type="radio" name="type" id="team" defaultChecked />
             <Label for="team">팀 구해요</Label>
           </Team>
-          <TeamMate>
+          <TeamMate onClick={() => setType("teammate")}>
             <Radio type="radio" name="type" id="teammate" />
             <Label for="teammate">팀원 구해요</Label>
           </TeamMate>
         </TypeRadio>
         <InfoInput>
           <CompetitionSelect name="competition" id="competition">
-          <CompetitionOption value="1">선린 해커톤</CompetitionOption>
-          <CompetitionOption value="2">천하제일코딩대회</CompetitionOption>
-          <CompetitionOption value="3">디지털콘텐츠경진대회</CompetitionOption>
+          <CompetitionOption value="선린 해커톤" onSelect={() => setCompetition("선린 해커톤")}>선린 해커톤</CompetitionOption>
+          <CompetitionOption value="천하제일코딩대회" onSelect={() => setCompetition("천하제일코딩대회")}>천하제일코딩대회</CompetitionOption>
+          <CompetitionOption value="디지털콘텐츠경진대회" onSelect={() => setCompetition("디지털콘텐츠경진대회")}>디지털콘텐츠경진대회</CompetitionOption>
         </CompetitionSelect>
-        <FieldInput type="text" placeholder="분야를 입력하세요." maxLength={20} />
+        <FieldInput type="text" placeholder="분야를 입력하세요." maxLength={20} onChange={(e) => setField(e.target.value)} />
         </InfoInput>
-        
-        <TitleInput type="text" placeholder="제목을 입력하세요." maxLength={80} />
-        <ContextInput placeholder="내용을 입력하세요." maxLength={2000}></ContextInput>
-        <SubmitBtn type="submit" value="제출" />
+        <TitleInput type="text" placeholder="제목을 입력하세요." maxLength={80} onChange={(e) => setTitle(e.target.value)} />
+        <ContextInput placeholder="내용을 입력하세요." maxLength={2000} onChange={(e) => setContent(e.target.value)}></ContextInput>
+        <SubmitBtn type="submit" value="제출" onClick={() => handleSubmit()} />
       </MainDiv>
     </RootDiv>
   );

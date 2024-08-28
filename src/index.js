@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Main from './pages/Main';
 import Write from './pages/Write';
+import LearnMore from './pages/LearnMore';
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,11 @@ const router = createBrowserRouter([
   {
     path: "/write",
     element: <Write />,
-  }
+  },
+  {
+    path: "/learn-more",
+    element: <LearnMore />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

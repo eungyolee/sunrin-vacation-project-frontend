@@ -11,6 +11,7 @@ const HeaderBody = styled.header`
   width: 100%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 1.0);
   z-index: 100;
+  height: 10%;
 `;
 
 const HeaderMain = styled.div`
