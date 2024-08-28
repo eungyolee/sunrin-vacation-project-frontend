@@ -100,7 +100,16 @@ export default function LearnMore() {
               <Title>{item.title}</Title>
               <Role>{item.field}</Role>
             </WriterInfo>
-            <Content>{item.content}</Content>
+            <Content>
+              {item.content.split("\n").map((line, index) => {
+                return (
+                  <span key={index}>
+                    {line}
+                    <br />
+                  </span>
+                );
+              })}
+            </Content>
           </Item>
         )}
       </MainDiv>

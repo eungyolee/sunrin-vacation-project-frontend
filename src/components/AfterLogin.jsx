@@ -79,13 +79,13 @@ const WriterInfo = styled.div`
 `;
 
 const Title = styled.h3`
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
   margin: 0;
 `;
 
 const Role = styled.p`
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 400;
   color: #72312A;
   margin: 0;
@@ -141,8 +141,7 @@ export default function AfterLogin() {
                   <Role>{item.field}</Role>
                 </WriterInfo>
                 <Content>
-                  {/* {item.content.length > 50 ? item.content.slice(0, 50) + "..." : item.content} */}
-                  {item.content}
+                  {item.content.length > 50 ? item.content.slice(0, 50) + "..." : item.content}
                 </Content>
               </Item>
             ))}
@@ -159,8 +158,7 @@ export default function AfterLogin() {
                   <Role>{item.field}</Role>
                 </WriterInfo>
                 <Content>
-                  {/* {item.content.length > 50 ? item.content.slice(0, 50) + "..." : item.content} */}
-                  {item.content}
+                  {item.content.length > 50 ? item.content.slice(0, 50) + "..." : item.content}
                 </Content>
               </Item>
             ))}

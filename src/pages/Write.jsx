@@ -58,6 +58,7 @@ const ContextInput = styled.textarea`
   padding: 0.5rem;
   margin-bottom: 1rem;
   resize: none;
+  font-size: 1.1rem;
 `;
 
 // Radio + Lable styling
